@@ -63,5 +63,12 @@ namespace PresentacionFinal
             Articulo articuloSeleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             mostrarImagen(articuloSeleccionado.UrlImagen);
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarArticulo nuevoArt = new frmAgregarArticulo();
+            nuevoArt.ShowDialog();
+            mostrarArticulos();
+        }
     }
 }

@@ -46,7 +46,7 @@ Código de artículo.
 Nombre.
 Descripción.
 Marca (seleccionable de una lista desplegable).
-Categoría (seleccionable de una lista desplegable.
+Categoría (seleccionable de una lista desplegable).
 Imagen.
 Precio.
 
@@ -57,5 +57,6 @@ junto a las ventanas con las que contará y su navegación.
 Etapa 2: Construir la interacción con la base de datos y 
 validaciones correspondiente para dar vida a la funcionalidad.
 
-Consideraciones: la app debe manejar arquitectura en capas, manejo de excepciones y validaciones cuando corresponda.
+Consideraciones: la app debe manejar arquitectura en capas, manejo de excepciones y 
+validaciones cuando corresponda.
  */

@@ -49,5 +49,21 @@ namespace Negocio
 
             finally { datos.cerrarConexion(); }
         }
+
+        public void agregar(Articulo artNuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta($"insert into ARTICULOS(Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values ('{artNuevo.Codigo}','{artNuevo.Nombre}','{artNuevo.Descripcion}', {artNuevo.marca.Id}, {artNuevo.categoria.Id},'{artNuevo.UrlImagen}', {artNuevo.Precio})");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally { datos.cerrarConexion(); }
+        }
     }
 }
