@@ -53,11 +53,6 @@ namespace PresentacionFinal
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             Articulo articuloSeleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
@@ -68,6 +63,15 @@ namespace PresentacionFinal
         {
             frmAgregarArticulo nuevoArt = new frmAgregarArticulo();
             nuevoArt.ShowDialog();
+            mostrarArticulos();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmAgregarArticulo frmModifica = new frmAgregarArticulo(seleccionado);
+            frmModifica.ShowDialog();
             mostrarArticulos();
         }
     }

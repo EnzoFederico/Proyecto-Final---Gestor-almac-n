@@ -65,5 +65,31 @@ namespace Negocio
 
             finally { datos.cerrarConexion(); }
         }
+
+        public void modificar(Articulo modificado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @marca, IdCategoria = @categoria, ImagenUrl = @imagen, Precio = @precio where Id = @id");
+
+                datos.setearParametro("@nombre", modificado.Nombre);
+                datos.setearParametro("@codigo", modificado.Codigo);
+                datos.setearParametro("@descripcion", modificado.Descripcion);
+                datos.setearParametro("@marca", modificado.marca.Id);
+                datos.setearParametro("@categoria", modificado.categoria.Id);
+                datos.setearParametro("@imagen", modificado.UrlImagen);
+                datos.setearParametro("@precio", modificado.Precio);
+                datos.setearParametro("@id", modificado.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally { datos.cerrarConexion(); }
+        }
     }
 }
