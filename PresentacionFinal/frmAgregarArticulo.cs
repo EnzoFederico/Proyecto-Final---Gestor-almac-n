@@ -49,8 +49,9 @@ namespace PresentacionFinal
                     txbDescripcion.Text = articulo.Descripcion;
                     txbPrecio.Text = articulo.Precio.ToString();
                     txbImagen.Text = articulo.UrlImagen;
-                    cbxMarca.SelectedValue = articulo.Descripcion;
-                    cbxCategoria.SelectedValue = articulo.Descripcion;
+                    mostrarImagen(articulo.UrlImagen);
+                    cbxMarca.SelectedValue = articulo.marca.Id;
+                    cbxCategoria.SelectedValue = articulo.categoria.Id;
                 }
             }
             catch (Exception ex)
@@ -98,6 +99,23 @@ namespace PresentacionFinal
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void mostrarImagen(string direccion)
+        {
+            try
+            {
+                picImagen2.Load(direccion);
+            }
+            catch (Exception ex)
+            {
+                picImagen2.Load("https://media.istockphoto.com/id/1421859468/es/vector/se%C3%B1al-de-advertencia-3d-vector-yellow-con-concepto-de-signo-de-exclamaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=04OHvyeeranmIn5KAoP1wG_USDMRk2TV3P6-B2XPlg4=");
+            }
+        }
+
+        private void txbImagen_Leave(object sender, EventArgs e)
+        {
+            mostrarImagen(txbImagen.Text);
         }
     }
 }

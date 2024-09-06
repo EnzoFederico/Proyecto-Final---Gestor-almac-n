@@ -41,11 +41,11 @@ namespace PresentacionFinal
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
-        private void mostrarImagen(string imagen)
+        private void mostrarImagen(string direccion)
         {
             try
             {
-                pbxArticulos.Load(imagen);
+                pbxArticulos.Load(direccion);
             }
             catch (Exception ex)
             {
@@ -72,6 +72,14 @@ namespace PresentacionFinal
             seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             frmAgregarArticulo frmModifica = new frmAgregarArticulo(seleccionado);
             frmModifica.ShowDialog();
+            mostrarArticulos();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmEliminacion frmElimina = new frmEliminacion(seleccionado);
+            frmElimina.ShowDialog();
             mostrarArticulos();
         }
     }
