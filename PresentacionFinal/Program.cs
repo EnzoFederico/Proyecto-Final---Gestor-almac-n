@@ -32,12 +32,12 @@ Esto no es parte del desarrollo, pero sí del contexto en el cual se utilizará 
 Deberá ser una aplicación de escritorio que contemple la administración de artículos. 
 Las funcionalidades que deberá tener la aplicación serán:
 
-Listado de artículos. v
+Listado de artículos. vv
 Búsqueda de artículos por distintos criterios.
-Agregar artículos. v
-Modificar artículos. v
-Eliminar artículos. v 
-Ver detalle de un artículo. v
+Agregar artículos. vv
+Modificar artículos. vv
+Eliminar artículos. vv 
+Ver detalle de un artículo. 
 Toda ésta información deberá ser persistida en una base de datos ya existente (la cual se adjunta). v
 
 Los datos mínimos con los que deberá contar el artículo son los siguientes:

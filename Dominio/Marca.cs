@@ -13,8 +13,7 @@ namespace Dominio
 
         public override string ToString()
         {
-            return Id.ToString();
+            return Descripcion;
         }
-
     }
 }

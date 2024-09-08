@@ -23,12 +23,15 @@ namespace PresentacionFinal
         private void Form1_Load(object sender, EventArgs e)
         {
             mostrarArticulos();
+            cbxCampo.Items.Add("Nombre");
+            cbxCampo.Items.Add("Marca");
+            cbxCampo.Items.Add("Precio");
         }
 
         private void mostrarArticulos()
         {
             ArticuloDatos negocio = new ArticuloDatos();
-            List<Articulo> listaArticulos = negocio.listarArticulos();
+            List<Articulo> listaArticulos = negocio.listarArticulos(1);
 
             dgvArticulos.DataSource = listaArticulos;
             ocultarColumna();
@@ -81,6 +84,51 @@ namespace PresentacionFinal
             frmEliminacion frmElimina = new frmEliminacion(seleccionado);
             frmElimina.ShowDialog();
             mostrarArticulos();
+        }
+
+        private void cbxCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = (string)cbxCampo.SelectedItem;
+
+            switch (opcion)
+            {
+                case "Nombre":
+                    cbxCriterio.Items.Clear();
+                    cbxCriterio.Items.Add("Comienza con");
+                    cbxCriterio.Items.Add("Termina con ");
+                    cbxCriterio.Items.Add("Contiene");
+                    break;
+                case "Marca":
+                    cbxCriterio.Items.Clear();
+                    cbxCriterio.Items.Add("Comienza con");
+                    cbxCriterio.Items.Add("Termina con ");
+                    cbxCriterio.Items.Add("Contiene");
+                    break;
+                case "Precio":
+                    cbxCriterio.Items.Clear();
+                    cbxCriterio.Items.Add("Precio mayor a");
+                    cbxCriterio.Items.Add("Precio menor a");
+                    cbxCriterio.Items.Add("Precio igual a");
+                    break;
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ArticuloDatos articBuscado = new ArticuloDatos();
+
+            try
+            {
+                string campo = cbxCampo.SelectedText;
+                string criterio = cbxCriterio.SelectedText;
+                string filtro = cbxCriterio.SelectedText;
+
+               // dgvArticulos.DataSource = articBuscado.filtrar(campo, criterio, filtro);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

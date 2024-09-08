@@ -28,10 +28,18 @@ namespace PresentacionFinal
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            ArticuloDatos articEliminar = new ArticuloDatos();
-            articEliminar.eliminar(articulo.Id);
-            MessageBox.Show("El articulo se eliminó permanentemente!!");
-            Close();
+            DialogResult respuesta = MessageBox.Show("¿De verdad queres eleminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
+                ArticuloDatos articEliminar = new ArticuloDatos();
+                articEliminar.eliminar(articulo.Id);
+                MessageBox.Show("El articulo se eliminó permanentemente!!");
+                Close();
+            }
+            else
+            {
+                Close();
+            }
         }
 
         private void btnBajaLogica_Click(object sender, EventArgs e)

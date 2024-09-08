@@ -9,14 +9,23 @@ namespace Negocio
 {
     public class ArticuloDatos
     {
-        public List<Articulo> listarArticulos()
+        public List<Articulo> listarArticulos(int opcion)
         {
+            string consulta;
+            if (opcion == 1)
+            {
+                consulta = "select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria ,IdMarca, IdCategoria, ImagenUrl, Precio from ARTICULOS as A, MARCAS as M, CATEGORIAS as C where Nombre not like '%DELETED' and A.IdMarca = M.Id and C.Id = A.IdCategoria";
+            }
+            else
+            {
+                consulta = "";
+            }
             List<Articulo> listArticulos = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select Id, Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio from ARTICULOS where Nombre not like '%DELETED'");
+                datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -26,13 +35,15 @@ namespace Negocio
                     articuloAux.Codigo = (string)datos.Lector["Codigo"];
                     articuloAux.Nombre = (string)datos.Lector["Nombre"];
                     articuloAux.Descripcion = (string)datos.Lector["Descripcion"];
+
                     articuloAux.marca = new Marca();
                     articuloAux.marca.Id = (int)datos.Lector["IdMarca"];
-                    //articuloAux.marca.Descripcion = (string)datos.Lector["Description"];
-                    articuloAux.categoria = new Categoria();
+                    articuloAux.marca.Descripcion = (string)datos.Lector["Marca"];
 
+                    articuloAux.categoria = new Categoria();
                     articuloAux.categoria.Id = (int)datos.Lector["IdCategoria"];
-                    //articuloAux.categoria.Descrpcion = (string)datos.Lector ["Description"];
+                    articuloAux.categoria.Descripcion = (string)datos.Lector ["Categoria"];
+
                     articuloAux.UrlImagen = (string)datos.Lector["ImagenUrl"];
                     articuloAux.Precio = (decimal)datos.Lector["Precio"];
 
@@ -121,5 +132,15 @@ namespace Negocio
             }
 
         }
+
+      /*  public List<Articulo> filtrar(string campo, string criterio, string filtro)
+        {
+            List<Articulo> listaFiltrada = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            datos.setearConsulta("");
+            datos.ejecutarAccion();
+            return List<>;
+        }*/
     }
 }
