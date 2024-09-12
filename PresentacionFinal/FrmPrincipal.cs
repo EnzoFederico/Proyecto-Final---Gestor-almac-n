@@ -31,7 +31,7 @@ namespace PresentacionFinal
         private void mostrarArticulos()
         {
             ArticuloDatos negocio = new ArticuloDatos();
-            List<Articulo> listaArticulos = negocio.listarArticulos(1);
+            List<Articulo> listaArticulos = negocio.listarArticulos();
 
             dgvArticulos.DataSource = listaArticulos;
             ocultarColumna();
@@ -95,13 +95,13 @@ namespace PresentacionFinal
                 case "Nombre":
                     cbxCriterio.Items.Clear();
                     cbxCriterio.Items.Add("Comienza con");
-                    cbxCriterio.Items.Add("Termina con ");
+                    cbxCriterio.Items.Add("Termina con");
                     cbxCriterio.Items.Add("Contiene");
                     break;
                 case "Marca":
                     cbxCriterio.Items.Clear();
                     cbxCriterio.Items.Add("Comienza con");
-                    cbxCriterio.Items.Add("Termina con ");
+                    cbxCriterio.Items.Add("Termina con");
                     cbxCriterio.Items.Add("Contiene");
                     break;
                 case "Precio":
@@ -119,11 +119,12 @@ namespace PresentacionFinal
 
             try
             {
-                string campo = cbxCampo.SelectedText;
-                string criterio = cbxCriterio.SelectedText;
-                string filtro = cbxCriterio.SelectedText;
+                string campo = cbxCampo.SelectedItem.ToString();
+                string criterio = cbxCriterio.SelectedItem.ToString();
+                string filtro = txbFiltro.Text;
 
-               // dgvArticulos.DataSource = articBuscado.filtrar(campo, criterio, filtro);
+               dgvArticulos.DataSource = articBuscado.listarArticulos(campo, criterio, filtro);
+               ocultarColumna();
             }
             catch (Exception ex)
             {

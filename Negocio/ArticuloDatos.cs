@@ -9,23 +9,14 @@ namespace Negocio
 {
     public class ArticuloDatos
     {
-        public List<Articulo> listarArticulos(int opcion)
+        public List<Articulo> listarArticulos()
         {
-            string consulta;
-            if (opcion == 1)
-            {
-                consulta = "select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria ,IdMarca, IdCategoria, ImagenUrl, Precio from ARTICULOS as A, MARCAS as M, CATEGORIAS as C where Nombre not like '%DELETED' and A.IdMarca = M.Id and C.Id = A.IdCategoria";
-            }
-            else
-            {
-                consulta = "";
-            }
             List<Articulo> listArticulos = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta(consulta);
+                datos.setearConsulta("select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria ,IdMarca, IdCategoria, ImagenUrl, Precio from ARTICULOS as A, MARCAS as M, CATEGORIAS as C where Nombre not like '%DELETED' and A.IdMarca = M.Id and C.Id = A.IdCategoria");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -59,6 +50,95 @@ namespace Negocio
             }
 
             finally { datos.cerrarConexion(); }
+        }
+
+        public List<Articulo> listarArticulos(string campo, string criterio, string filtro)
+        {
+            List<Articulo> listaFiltrada = new List<Articulo>();
+            AccesoDatos datos2 = new AccesoDatos();
+
+            try
+            {
+                string consultaFiltro = "select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria ,IdMarca, IdCategoria, ImagenUrl, Precio from ARTICULOS as A, MARCAS as M, CATEGORIAS as C where Nombre not like '%DELETED' AND A.IdMarca = M.Id AND C.Id = A.IdCategoria AND ";
+
+                if (campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consultaFiltro += $"Nombre like '{filtro}%'";
+                            break;
+                        case "Termina con":
+                            consultaFiltro += $"Nombre like '%{filtro}'";
+                            break;
+                        case "Contiene":
+                            consultaFiltro += $"Nombre like '%{filtro}%'";
+                            break;
+                    }
+                }
+                else if (campo == "Marca")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consultaFiltro += $"M.Descripcion like '{filtro}%'";
+                            break;
+                        case "Termina con":
+                            consultaFiltro += $"M.Descripcion like '%{filtro}'";
+                            break;
+                        case "Contiene":
+                            consultaFiltro += $"M.Descripcion like '%{filtro}%'";
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (criterio)
+                    {
+                        case "Precio mayor a":
+                            consultaFiltro += "Precio < " + filtro;
+                            break;
+                        case "Precio menor a":
+                            consultaFiltro += "Precio > " + filtro;
+                            break;
+                        case "Precio igual a":
+                            consultaFiltro += "Precio = " + filtro;
+                            break;
+                    }
+                }
+
+                datos2.setearConsulta(consultaFiltro);
+                datos2.ejecutarLectura();
+
+                while (datos2.Lector.Read())
+                {
+                    Articulo articuloAux = new Articulo();
+                    articuloAux.Id = (int)datos2.Lector["Id"];
+                    articuloAux.Codigo = (string)datos2.Lector["Codigo"];
+                    articuloAux.Nombre = (string)datos2.Lector["Nombre"];
+                    articuloAux.Descripcion = (string)datos2.Lector["Descripcion"];
+
+                    articuloAux.marca = new Marca();
+                    articuloAux.marca.Id = (int)datos2.Lector["IdMarca"];
+                    articuloAux.marca.Descripcion = (string)datos2.Lector["Marca"];
+
+                    articuloAux.categoria = new Categoria();
+                    articuloAux.categoria.Id = (int)datos2.Lector["IdCategoria"];
+                    articuloAux.categoria.Descripcion = (string)datos2.Lector["Categoria"];
+
+                    articuloAux.UrlImagen = (string)datos2.Lector["ImagenUrl"];
+                    articuloAux.Precio = (decimal)datos2.Lector["Precio"];
+
+                    listaFiltrada.Add(articuloAux);
+                }
+
+                return listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos2.cerrarConexion(); }
         }
 
         public void agregar(Articulo artNuevo)
@@ -133,14 +213,6 @@ namespace Negocio
 
         }
 
-      /*  public List<Articulo> filtrar(string campo, string criterio, string filtro)
-        {
-            List<Articulo> listaFiltrada = new List<Articulo>();
-            AccesoDatos datos = new AccesoDatos();
-
-            datos.setearConsulta("");
-            datos.ejecutarAccion();
-            return List<>;
-        }*/
+ 
     }
 }
