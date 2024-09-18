@@ -41,6 +41,7 @@ namespace PresentacionFinal
                 cbxCategoria.DataSource = categoria.listarCategorias();
                 cbxCategoria.ValueMember = "Id";
                 cbxCategoria.DisplayMember = "Descripcion";
+                
 
                 if (articulo != null)
                 {

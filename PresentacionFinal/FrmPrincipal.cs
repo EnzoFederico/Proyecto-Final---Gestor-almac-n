@@ -119,6 +119,9 @@ namespace PresentacionFinal
 
             try
             {
+                if (validarDatos())
+                    return;
+
                 string campo = cbxCampo.SelectedItem.ToString();
                 string criterio = cbxCriterio.SelectedItem.ToString();
                 string filtro = txbFiltro.Text;
@@ -130,6 +133,49 @@ namespace PresentacionFinal
             {
                 throw ex;
             }
+        }
+
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmDetalle ventanaDetalle = new frmDetalle(seleccionado);
+            ventanaDetalle.ShowDialog();
+        }
+
+        private bool validarDatos()
+        {
+            if (cbxCampo.SelectedIndex == -1 || cbxCriterio.SelectedIndex == -1)
+            {
+                MessageBox.Show("Para realizar una busqueda debe elegir un campo, criterio y filtro que corresponda.");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(txbFiltro.Text))
+            {
+                MessageBox.Show("Hace falta cargar el filtro");
+                return true;
+            }
+
+            if (cbxCampo.SelectedIndex == 2)
+            { 
+                string cadena = txbFiltro.Text;
+                foreach (char c in cadena)
+                {
+                    if (!(char.IsNumber(c)))
+                    {
+                        MessageBox.Show("Por favor, escriba el tipo de filtro que corresponda");
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            mostrarArticulos();
         }
     }
 }
