@@ -23,7 +23,7 @@ namespace PresentacionFinal
 
         private void frmEliminacion_Load(object sender, EventArgs e)
         {
-
+            lbTextoAclaracion.Text = "Antes de elegir una opción, debe tener en cuenta que si elige la 'eliminación permanente'\nlos datos seran borrados permanentemente de la base de datos. \n\nSi elige la opción de baja logica, al articulo sera removido de la lista de articulos, \npero sera conservada en la base de datos,\ny en el futuro si quiere los puede volver a recuperar.";
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

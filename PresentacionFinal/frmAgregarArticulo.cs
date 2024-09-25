@@ -86,6 +86,9 @@ namespace PresentacionFinal
 
                 if(articulo.Id != 0)
                 {
+                    if (validarModificacion())
+                        return;
+
                     datos.modificar(articulo);
                     MessageBox.Show("Se ha modificado el articulo exitosamente.");
                 }
