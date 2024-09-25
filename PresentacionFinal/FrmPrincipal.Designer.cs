@@ -46,8 +46,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label5nombre = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
+            this.label5nombre = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulos)).BeginInit();
             this.panel2.SuspendLayout();
@@ -57,12 +57,15 @@
             // dgvArticulos
             // 
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvArticulos.GridColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvArticulos.Location = new System.Drawing.Point(218, 78);
             this.dgvArticulos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.RowHeadersWidth = 51;
             this.dgvArticulos.RowTemplate.Height = 24;
+            this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulos.Size = new System.Drawing.Size(874, 275);
             this.dgvArticulos.TabIndex = 1;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
@@ -72,13 +75,18 @@
             this.pbxArticulos.Location = new System.Drawing.Point(1102, 78);
             this.pbxArticulos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbxArticulos.Name = "pbxArticulos";
-            this.pbxArticulos.Size = new System.Drawing.Size(330, 574);
+            this.pbxArticulos.Size = new System.Drawing.Size(368, 614);
             this.pbxArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxArticulos.TabIndex = 3;
             this.pbxArticulos.TabStop = false;
             // 
             // btnAgregar
             // 
+            this.btnAgregar.FlatAppearance.BorderColor = System.Drawing.Color.MediumBlue;
+            this.btnAgregar.FlatAppearance.BorderSize = 2;
+            this.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.btnAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.Location = new System.Drawing.Point(12, 78);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -91,6 +99,11 @@
             // 
             // btnModificar
             // 
+            this.btnModificar.FlatAppearance.BorderColor = System.Drawing.Color.MediumBlue;
+            this.btnModificar.FlatAppearance.BorderSize = 2;
+            this.btnModificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.Location = new System.Drawing.Point(12, 138);
             this.btnModificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -103,6 +116,11 @@
             // 
             // btnEliminar
             // 
+            this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.MediumBlue;
+            this.btnEliminar.FlatAppearance.BorderSize = 2;
+            this.btnEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Location = new System.Drawing.Point(12, 198);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
@@ -114,6 +132,11 @@
             // 
             // btnDetalle
             // 
+            this.btnDetalle.FlatAppearance.BorderColor = System.Drawing.Color.MediumBlue;
+            this.btnDetalle.FlatAppearance.BorderSize = 2;
+            this.btnDetalle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.btnDetalle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnDetalle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDetalle.Location = new System.Drawing.Point(12, 258);
             this.btnDetalle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDetalle.Name = "btnDetalle";
@@ -185,6 +208,11 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.FlatAppearance.BorderColor = System.Drawing.Color.MediumBlue;
+            this.btnBuscar.FlatAppearance.BorderSize = 2;
+            this.btnBuscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.Cyan;
+            this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Location = new System.Drawing.Point(68, 164);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(124, 39);
@@ -200,7 +228,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1432, 73);
+            this.panel2.Size = new System.Drawing.Size(1482, 73);
             this.panel2.TabIndex = 19;
             // 
             // label1
@@ -229,16 +257,13 @@
             this.panel3.Size = new System.Drawing.Size(200, 288);
             this.panel3.TabIndex = 20;
             // 
-            // label5nombre
-            // 
-            this.label5nombre.AutoSize = true;
-            this.label5nombre.Location = new System.Drawing.Point(570, 459);
-            this.label5nombre.Name = "label5nombre";
-            this.label5nombre.Size = new System.Drawing.Size(0, 16);
-            this.label5nombre.TabIndex = 21;
-            // 
             // btnReset
             // 
+            this.btnReset.FlatAppearance.BorderColor = System.Drawing.Color.MediumBlue;
+            this.btnReset.FlatAppearance.BorderSize = 2;
+            this.btnReset.FlatAppearance.CheckedBackColor = System.Drawing.Color.Cyan;
+            this.btnReset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.Location = new System.Drawing.Point(68, 221);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(124, 39);
@@ -247,12 +272,20 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // label5nombre
+            // 
+            this.label5nombre.AutoSize = true;
+            this.label5nombre.Location = new System.Drawing.Point(570, 459);
+            this.label5nombre.Name = "label5nombre";
+            this.label5nombre.Size = new System.Drawing.Size(0, 16);
+            this.label5nombre.TabIndex = 21;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1432, 653);
+            this.ClientSize = new System.Drawing.Size(1482, 703);
             this.Controls.Add(this.label5nombre);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.panel3);
@@ -265,6 +298,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1500, 750);
+            this.MinimumSize = new System.Drawing.Size(1500, 750);
             this.Name = "FrmPrincipal";
             this.Text = "Gestor de Articulos";
             this.Load += new System.EventHandler(this.Form1_Load);

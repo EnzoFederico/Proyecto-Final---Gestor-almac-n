@@ -175,6 +175,9 @@ namespace PresentacionFinal
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            cbxCampo.ResetText();
+            cbxCriterio.ResetText();
+            txbFiltro.Clear();
             mostrarArticulos();
         }
     }

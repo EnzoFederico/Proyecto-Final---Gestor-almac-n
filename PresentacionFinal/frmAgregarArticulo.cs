@@ -38,9 +38,12 @@ namespace PresentacionFinal
                 cbxMarca.DataSource = marca.listarMarcas();
                 cbxMarca.ValueMember = "Id";
                 cbxMarca.DisplayMember = "Descripcion";
+                cbxMarca.SelectedIndex = -1;
                 cbxCategoria.DataSource = categoria.listarCategorias();
                 cbxCategoria.ValueMember = "Id";
                 cbxCategoria.DisplayMember = "Descripcion";
+                cbxCategoria.SelectedIndex = -1;
+                
                 
 
                 if (articulo != null)
@@ -69,6 +72,9 @@ namespace PresentacionFinal
             {
                 if(articulo == null)
                     articulo = new Articulo();
+
+                if (validarModificacion())
+                    return;
 
                 articulo.Nombre = txbNombre.Text;
                 articulo.Codigo = txbCodigo.Text;
@@ -117,6 +123,29 @@ namespace PresentacionFinal
         private void txbImagen_Leave(object sender, EventArgs e)
         {
             mostrarImagen(txbImagen.Text);
+        }
+
+        private bool validarModificacion()
+        {
+            if(cbxCategoria.SelectedIndex == -1 || cbxMarca.SelectedIndex == -1)
+            {
+                MessageBox.Show("Lo siento, debe completar todos los campos.\nDebe elegir una marca y categoria.\nEl valor del precio debe ser numerico.");
+                return true;
+            }
+
+            if (txbNombre.Text == string.Empty || txbCodigo.Text == string.Empty || txbDescripcion.Text == string.Empty || txbImagen.Text== string.Empty || txbPrecio.Text == string.Empty)
+            {
+                MessageBox.Show("Lo siento, debe completar todos los campos.\nDebe elegir una marca y categoria.\nEl valor del precio debe ser numerico.");
+                return true;
+            }
+
+            if (!(decimal.TryParse(txbPrecio.Text, out decimal result)))
+            {
+                MessageBox.Show("Lo siento, debe completar todos los campos.\nDebe elegir una marca y categoria.\nEl valor del precio debe ser numerico.");
+                return true;
+            }
+
+            return false;
         }
     }
 }
